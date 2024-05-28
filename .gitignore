@@ -1,0 +1,5 @@
+/.idea/
+.DS_Store
+/indexer/
+/browser/node_modules/
+/service/venv/
