@@ -1,29 +1,45 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import {createBrowserRouter, RouteObject, RouterProvider} from 'react-router-dom';
 import {
   App,
   PageHeader,
   Search,
   Detail as BrowserDetail,
   createSearchLoader,
-  createDetailLoader,
   searchUtils,
   SearchParams
 } from '@knaw-huc/browser-base-react';
-import {createBrowserRouter, RouteObject, RouterProvider} from 'react-router-dom';
-import reportWebVitals from './reportWebVitals';
+import Facets from './components/Facets.js';
+import ListItem from './components/ListItem.js';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+// @ts-ignore
+import logo from './assets/logo.svg';
+import './index.css';
+
+const title = 'REPUBLIC Entity Browser';
+const shortTitle = 'REPUBLIC Entity Browser';
+const searchLoader = createSearchLoader(searchUtils.getSearchObjectFromParams, '/browse', 10);
+//const detailLoader = createDetailLoader(id => `/vocab/${id}`);
+
+const pageHeader = <PageHeader
+    title={shortTitle}
+    logo={<img src={logo} className="logo" alt="REPUBLIC Logo"/>}/>;
+
+const routeObject: RouteObject = {
+  path: '/',
+  element: <App header={pageHeader}/>,
+  children: [{
+    index: true,
+    loader: async ({request}) => searchLoader(new URL(request.url).searchParams),
+    element: <Search title={title} pageLength={10} withPaging={true}
+                     hasIndexPage={false} showSearchHeader={false} updateDocumentTitle={false}
+                     searchParams={SearchParams.PARAMS} FacetsComponent={Facets} ResultItemComponent={ListItem}/>
+  }]
+};
+
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+    <React.StrictMode>
+      <RouterProvider router={createBrowserRouter([routeObject])}/>
+    </React.StrictMode>
 );
-root.render(
-  <React.StrictMode>
-
-  </React.StrictMode>
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
