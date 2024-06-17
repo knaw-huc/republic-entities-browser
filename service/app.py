@@ -35,12 +35,10 @@ def get_facet():
     ret_struc = index.get_facet(struc["name"], struc["amount"], struc["filter"], struc["searchvalues"])
     return json.dumps(ret_struc)
 
-@app.route("/nested-facet", methods=['GET'])
+@app.route("/nested-facet", methods=['GET', 'POST'])
 def get_nested_facet():
-    facet = request.args.get("name")
-    amount = request.args.get("amount")
-    facet_filter = request.args.get("filter")
-    ret_struc = index.get_nested_facet(facet + ".keyword", amount, facet_filter)
+    struc = request.get_json()
+    ret_struc = index.get_nested_facet(struc["name"], struc["amount"], struc["filter"], struc["searchvalues"])
     return json.dumps(ret_struc)
 
 
@@ -49,6 +47,10 @@ def browse():
     struc = request.get_json()
     ret_struc = index.browse(struc["page"], struc["page_length"], struc["searchvalues"])
     return json.dumps(ret_struc)
+
+@app.route("/detail/<id>")
+def dummy(id):
+    return jsonify({})
 
 @app.route("/organisatie/<id>", methods=['GET'])
 def organisatie(id):
@@ -61,17 +63,17 @@ def locatie(id):
     return json.dumps(ret_struc)
 
 @app.route("/persoon/<id>", methods=['GET'])
-def organisatie(id):
+def persoon(id):
     ret_struc = index.get_entity('Persoon', id)
     return json.dumps(ret_struc)
 
 @app.route("/hoedanigheid/<id>", methods=['GET'])
-def organisatie(id):
+def hoedanigheid(id):
     ret_struc = index.get_entity('Hoedanigheid', id)
     return json.dumps(ret_struc)
 
 @app.route("/commissie/<id>", methods=['GET'])
-def organisatie(id):
+def commissie(id):
     ret_struc = index.get_entity('Commissie', id)
     return json.dumps(ret_struc)
 

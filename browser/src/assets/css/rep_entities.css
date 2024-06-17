@@ -1,0 +1,28 @@
+.hcBrandLogo .logo {
+height: 50px !important;
+}
+
+.hcTitle{
+display: inline-block;
+margin-left: 140px;
+}
+
+.resultName{
+font-weight: bold;
+cursor: pointer;
+}
+
+.resItemSeparator{
+border: 1px solid #dddddd;
+}
+
+.hcResultListDetail{
+margin-top: 10px;
+display: block;
+padding: 10px;
+}
+
+.hcResultListDetail:nth-child(even){
+background-color: #ededed;
+border: 1px solid #cdcdcd;
+}

@@ -26,19 +26,20 @@ class Index:
             if item["field"] == "FREE_TEXT":
                 for value in item["values"]:
                     must_collection.append({"multi_match": {"query": value, "fields": ["*"]}})
-            elif item["field"] == "beginjaar" or item["field"] == "eindjaar":
+            elif item["field"] == "activity_hint_begin" or item["field"] == "activity_hint_end":
                 range_values = item["values"][0]
                 r_array = range_values.split('-')
                 must_collection.append({"range": {item["field"]: {"gte": r_array[0], "lte": r_array[1]}}})
             else:
                 for value in item["values"]:
-                    must_collection.append({"match": {item["field"] + ".keyword": value}})
+                    must_collection.append({"match": {item["field"] + ".raw": value}})
+        print(json.dumps(must_collection))
         return must_collection
 
 
     def get_facet(self, field, amount, facet_filter, search_values):
         terms = {
-            "field": field + ".keyword",
+            "field": field + ".raw",
             "size": amount,
             "order": {
                 "_count": "desc"
@@ -102,7 +103,7 @@ class Index:
                 ret_array.append(buffer)
         return ret_array
 
-    def get_nested_facet(self, field, amount, facet_filter):
+    def get_nested_facet(self, field, amount, facet_filter, searchvalues):
         ret_array = []
         path = field.split('.')[0]
         response = self.client.search(
@@ -110,7 +111,7 @@ class Index:
             body=
             {"size": 0, "aggs": {"nested_terms": {"nested": {"path": path}, "aggs": {
                 "filter": {"filter": {"regexp": {"$field.raw": "$filter.*"}},
-                           "aggs": {"names": {"terms": {"field": "$field.raw", "size": amount}}}}}}}}
+                           "aggs": {"names": {"terms": {"field": field + ".raw", "size": amount}}}}}}}}
         )
         for hits in response["aggregations"]["nested_terms"]["filter"]["names"]["buckets"]:
             buffer = {"key": hits["key"], "doc_count": hits["doc_count"]}
@@ -137,7 +138,7 @@ class Index:
             "query": query,
             "size": length,
             "from": start,
-            "_source": ["id", "name", "cat", "activity_hint_begin", "activity_hint_end"],
+            #"_source": ["id", "name", "cat", "activity_hint_begin", "activity_hint_end"],
             "sort": [
                 {"name.raw": {"order": "asc"}}
             ]
