@@ -1,0 +1,41 @@
+version: '2'
+
+services:
+  entity-elastic:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.1
+    container_name: entity-elastic
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+    volumes:
+      - republic-entity-index:/usr/share/elasticsearch/data
+    networks:
+      - traefik-public
+
+  entity-app:
+    image: registry.diginfra.net/tsd/republic-entity-browser:0.9
+    container_name: entity-app
+    environment:
+      ES_URI: entity-elastic
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.services.entity-app.loadbalancer.server.port=5000"
+      - "traefik.http.routers.entity-app.entrypoints=http"
+      - "traefik.http.routers.entity-app.rule=Host(`entity.sd.di.huc.knaw.nl`)"
+    expose:
+      - 5000
+    networks:
+      - traefik-public
+
+
+networks:
+  traefik-public:
+    external: true
+
+volumes:
+  republic-entity-index:
+    external: true
+
+
+
+

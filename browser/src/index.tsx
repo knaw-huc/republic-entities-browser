@@ -15,17 +15,21 @@ import Facets from "./components/facets";
 import ListItem from "./components/listItem";
 import Detail from "./components/detail";
 import Persoon from "./components/persoon";
+import EntityLoader from "./misc/entityLoader";
 import logo from './assets/img/logo.png';
 
 // @ts-ignore
 import './index.css';
 import './assets/css/rep_entities.css';
 import Commissie from "./components/commissie";
+import Locatie from "./components/locatie";
+import Organisatie from "./components/organisatie";
+import Hoedanigheid from "./components/hoedanigheid";
 
 const title = 'REPUBLIC Entity Browser';
 const shortTitle = 'REPUBLIC Entity Browser';
-const searchLoader = createSearchLoader(searchUtils.getSearchObjectFromParams, 'http://localhost:5000/browse', 30);
-const detailLoader = createDetailLoader(id => `http://localhost:5000/detail/${id}`);
+const searchLoader = createSearchLoader(searchUtils.getSearchObjectFromParams, '/browse', 30);
+const detailLoader = createDetailLoader(id => `/detail/${id}`);
 
 const pageHeader = <PageHeader
     title={shortTitle}
@@ -48,11 +52,33 @@ const routeObject: RouteObject = {
     },
     {
       path: '/persoon/:id',
+      loader: ({params}) =>  EntityLoader('persoon', params.id as string),
+      element: <Persoon/>
+    },
+    {
+      path: '/persoon/:id' + '.html',
+      loader: ({params}) =>  EntityLoader('persoon', params.id as string),
       element: <Persoon/>
     },
     {
       path: '/commissie/:id',
+      loader: ({params}) =>  EntityLoader('commissie', params.id as string),
       element: <Commissie/>
+    },
+    {
+      path: '/locatie/:id',
+      loader: ({params}) =>  EntityLoader('locatie', params.id as string),
+      element: <Locatie/>
+    },
+    {
+      path: '/organisatie/:id',
+      loader: ({params}) =>  EntityLoader('organisatie', params.id as string),
+      element: <Organisatie/>
+    },
+    {
+      path: '/hoedanigheid/:id',
+      loader: ({params}) =>  EntityLoader('hoedanigheid', params.id as string),
+      element: <Hoedanigheid/>
     }
   ]
 };

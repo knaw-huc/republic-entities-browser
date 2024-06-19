@@ -23,6 +23,47 @@ padding: 10px;
 }
 
 .hcResultListDetail:nth-child(even){
-background-color: #ededed;
-border: 1px solid #cdcdcd;
+background-color: #fef5eb;
+border: 1px solid #eee5db;
+}
+
+.entityTable{
+display: table;
+}
+
+.entityRow{
+display:table-row;
+}
+
+.entityLabel, .entityValue{
+display:table-cell;
+}
+
+.entityLabel{
+font-weight: bold;
+padding-right: 40px;
+}
+
+.entityInstances{
+display:block;
+margin-top: 40px;
+}
+
+.goBack{
+margin-top: 40px;
+color: #ea9f49;
+cursor: pointer;
+font-size: smaller;
+}
+
+.hcPagination{
+margin: 40px 0;
+}
+
+.pageHeader{
+background-color: #2b2b2b !important;
+}
+
+.pageHeader a, .hcClickable {
+color: #ea9f49 !important;
 }

@@ -8,8 +8,7 @@ import math
 class Index:
     def __init__(self, config):
         self.config = config
-        self.es = Elasticsearch([{"host": self.config["url"], "port": self.config["port"]}])
-        self.client = Elasticsearch()
+        self.client = Elasticsearch([{"host": self.config["url"]}])
 
     def no_case(self, str_in):
         str = str_in.strip()
@@ -33,7 +32,6 @@ class Index:
             else:
                 for value in item["values"]:
                     must_collection.append({"match": {item["field"] + ".raw": value}})
-        print(json.dumps(must_collection))
         return must_collection
 
 
@@ -66,42 +64,12 @@ class Index:
                     "must": self.make_matches(search_values)
                 }
             }
-        print(json.dumps(body))
         response = self.client.search(index='entities', body=body)
 
         return [{"key": hits["key"], "doc_count": hits["doc_count"]}
                 for hits in response["aggregations"]["names"]["buckets"]]
 
-    def get_filter_facet(self, field, amount, facet_filter):
-        ret_array = []
-        response = self.client.search(
-            index="entities",
-            body=
-            {
-                "query": {
-                    "regexp": {
-                        field: self.no_case(facet_filter)
-                    }
-                },
-                "size": 0,
-                "aggs": {
-                    "names": {
-                        "terms": {
-                            "field": field,
-                            "size": 20,
-                            "order": {
-                                "_count": "desc"
-                            }
-                        }
-                    }
-                }
-            }
-        )
-        for hits in response["aggregations"]["names"]["buckets"]:
-            buffer = {"key": hits["key"], "doc_count": hits["doc_count"]}
-            if facet_filter.lower() in buffer["key"].lower():
-                ret_array.append(buffer)
-        return ret_array
+
 
     def get_nested_facet(self, field, amount, facet_filter, searchvalues):
         ret_array = []

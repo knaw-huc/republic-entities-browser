@@ -36,6 +36,16 @@ export default function ListItem({item}: { item: IResultItem }) {
                 break;
             case "Commissie":
                 nav("/commissie/" + id);
+                break;
+            case "Locatie":
+                nav("/locatie/" + id);
+                break;
+            case "Organisatie":
+                nav("/organisatie/" + id);
+                break;
+            case "Hoedanigheid":
+                nav("/hoedanigheid/" + id);
+                break;
         }
     }
 

@@ -3,7 +3,7 @@ import {useLoaderData, useParams, useNavigate} from "react-router-dom";
 import {IResultItem} from "../misc/interfaces";
 import DetailTable from "../misc/detailTable";
 
-export default function Commissie() {
+export default function Organisatie() {
     const {id} = useParams();
     const data = useLoaderData() as IResultItem;
     const navigate = useNavigate();
@@ -11,7 +11,7 @@ export default function Commissie() {
     return (
         <div className="hcContentContainer">
             <div className="hcBasicSideMargin">
-                <h1>Commissie</h1>
+                <h1>Organisatie</h1>
                 <DetailTable data={data}/>
                 <div className="entityInstances">
                     <h2>Instances</h2>

@@ -1,2 +1,4 @@
-export const BASE_URL = "'https://entities.sd.di.huc.knaw.nl/";
-export const FACET_URL = 'http://localhost:5000/facet';
+//export const BASE_URL = "http://localhost:5000/";
+export const BASE_URL = "/";
+//export const FACET_URL = BASE_URL + 'facet';
+export const FACET_URL = '/facet';
