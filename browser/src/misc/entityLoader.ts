@@ -5,7 +5,7 @@ export default async function EntityLoader(entity: string, id: string) {
     const result = await fetch(BASE_URL + entity + '/' + id, {
         method: 'GET',
         headers: {
-            'Content-Type': 'application/json'
+            'Accept': 'application/json'
         }
     });
 

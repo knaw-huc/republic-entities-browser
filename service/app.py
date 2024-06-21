@@ -86,7 +86,7 @@ def dummy(id):
 
 @app.route("/organisatie/<id>", methods=['GET'])
 def organisatie(id):
-    if request.headers['Content-Type'] == 'application/json':
+    if request.accept_mimetypes.accept_json:
         ret_struc = index.get_entity('Organisatie', id)
         return jsonify(ret_struc["items"][0])
     else:
@@ -94,7 +94,7 @@ def organisatie(id):
 
 @app.route("/locatie/<id>", methods=['GET'])
 def locatie(id):
-    if request.headers['Content-Type'] == 'application/json':
+    if request.accept_mimetypes.accept_json:
         ret_struc = index.get_entity('Locatie', id)
         return jsonify(ret_struc["items"][0])
     else:
@@ -102,7 +102,7 @@ def locatie(id):
 
 @app.route("/persoon/<id>", methods=['GET'])
 def persoon(id):
-    if request.headers['Content-Type'] == 'application/json':
+    if request.accept_mimetypes.accept_json:
         ret_struc = index.get_entity('Persoon', id)
         return jsonify(ret_struc["items"][0])
     else:
@@ -110,7 +110,7 @@ def persoon(id):
 
 @app.route("/hoedanigheid/<id>", methods=['GET'])
 def hoedanigheid(id):
-    if request.headers['Content-Type'] == 'application/json':
+    if request.accept_mimetypes.accept_json:
         ret_struc = index.get_entity('Hoedanigheid', id)
         return jsonify(ret_struc["items"][0])
     else:
@@ -118,7 +118,7 @@ def hoedanigheid(id):
 
 @app.route("/commissie/<id>", methods=['GET'])
 def commissie(id):
-    if request.headers['Content-Type'] == 'application/json':
+    if request.accept_mimetypes.accept_json:
         ret_struc = index.get_entity('Commissie', id)
         return json.dumps(ret_struc["items"][0])
     else:
