@@ -11,15 +11,15 @@ export default function DetailTable({data}: {data:IResultItem}) {
                 <div className="entityLabel">Naam:</div>
                 <div className="entityValue">{data.name}</div>
             </div>
-            {data.cat === 'Persoon' && <div className="entityRow">
+            {data.category === 'Persoon' && <div className="entityRow">
                 <div className="entityLabel">Geboortejaar:</div>
                 <div className="entityValue">{data.person_data?.life_begin}</div>
             </div>}
-            {data.cat === 'Persoon' && <div className="entityRow">
+            {data.category === 'Persoon' && <div className="entityRow">
                 <div className="entityLabel">Sterfjaar:</div>
                 <div className="entityValue">{data.person_data?.life_end}</div>
             </div>}
-            {data.cat === 'Persoon' && <div className="entityRow">
+            {data.category === 'Persoon' && <div className="entityRow">
                 <div className="entityLabel">Provincie:</div>
                 <div className="entityValue">{data.person_data?.province}</div>
             </div>}
@@ -32,7 +32,7 @@ export default function DetailTable({data}: {data:IResultItem}) {
                 <div className="entityValue">{data.activity_hint_end}</div>
             </div>
             <div className="entityRow">
-                <div className="entityLabel">Labels:</div>
+                <div className="entityLabel">Categorie:</div>
                 <div className="entityValue">{list.join(', ')}</div>
             </div>
             <div className="entityRow">

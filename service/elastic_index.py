@@ -8,7 +8,8 @@ import math
 class Index:
     def __init__(self, config):
         self.config = config
-        self.client = Elasticsearch([{"host": self.config["url"]}])
+        #self.client = Elasticsearch([{"host": self.config["url"]}])
+        self.client = Elasticsearch()
 
     def no_case(self, str_in):
         str = str_in.strip()
@@ -31,13 +32,13 @@ class Index:
                 must_collection.append({"range": {item["field"]: {"gte": r_array[0], "lte": r_array[1]}}})
             else:
                 for value in item["values"]:
-                    must_collection.append({"match": {item["field"] + ".raw": value}})
+                    must_collection.append({"match": {item["field"] + ".keyword": value}})
         return must_collection
 
 
     def get_facet(self, field, amount, facet_filter, search_values):
         terms = {
-            "field": field + ".raw",
+            "field": field + ".keyword",
             "size": amount,
             "order": {
                 "_count": "desc"
@@ -108,7 +109,7 @@ class Index:
             "from": start,
             #"_source": ["id", "name", "cat", "activity_hint_begin", "activity_hint_end"],
             "sort": [
-                {"name.raw": {"order": "asc"}}
+                {"name.keyword": {"order": "asc"}}
             ]
         })
 
@@ -121,9 +122,6 @@ class Index:
             "query": {
                 "bool": {
                     "must": [
-                        {"match": {
-                            "cat": type
-                        }},
                         {"match": {
                             "id": id
                         }}

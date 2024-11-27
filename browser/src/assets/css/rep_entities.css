@@ -67,3 +67,19 @@ background-color: #2b2b2b !important;
 .pageHeader a, .hcClickable {
 color: #ea9f49 !important;
 }
+
+.footerArea{
+display: block;
+height: 200px;
+background-color: #faa94c;
+}
+
+.flogo{
+width: 200px;
+}
+
+.hcContentContainer{
+margin-bottom: 50px;
+}
+
+

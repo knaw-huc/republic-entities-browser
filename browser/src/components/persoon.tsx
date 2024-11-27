@@ -11,27 +11,27 @@ export default function Persoon() {
     return (
         <div className="hcContentContainer">
             <div className="hcBasicSideMargin">
-                <h1>Persoon</h1>
+                <h1>Persoonsnaam</h1>
                 <DetailTable data={persData}/>
                 <div className="entityInstances">
-                    <h2>Instances</h2>
+                    <h2>Waar komt deze entiteit voor?</h2>
                     <ul>
                         <li>
                             <div className="hcClickable" onClick={() => {
                                 alert("Actief zodra id's en URL's bekend zijn")
-                            }}>AnnoViz
+                            }}>Goetgevonden
                             </div>
                         </li>
                         <li>
                             <div className="hcClickable" onClick={() => {
                                 alert("Actief zodra id's en URL's bekend zijn")
-                            }}>Schutte
+                            }}>Repertorium van ambtsdragers en ambtenaren
                             </div>
                         </li>
                         <li>
                             <div className="hcClickable" onClick={() => {
                                 alert("Actief zodra id's en URL's bekend zijn")
-                            }}>RAA
+                            }}>Repertoria van diplomatieke vertegenwoordigers
                             </div>
                         </li>
                     </ul>

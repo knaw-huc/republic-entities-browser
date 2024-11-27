@@ -5,13 +5,13 @@ import {useNavigate} from "react-router-dom";
 
 export default function ListItem({item}: { item: IResultItem }) {
     const nav = useNavigate();
-    const era = period(item.activity_hint_begin, item.activity_hint_end);
+    //const era = period(item.activity_hint_begin, item.activity_hint_end);
     let LiveAndLetDie = "";
     let provincie = "";
-    if (item.cat === "Persoon") {
+   /* if (item.cat === "Persoon") {
         LiveAndLetDie = "(" + item.person_data?.life_begin + "-" + item.person_data?.life_end + ")";
         provincie = ", " + item.person_data?.province;
-    }
+    }*/
 
     function period(begin:string, end:string) {
         if (begin !== '0' && end !== '0') {
@@ -31,7 +31,7 @@ export default function ListItem({item}: { item: IResultItem }) {
 
     function goToPage(cat: string, id:string) {
         switch(cat) {
-            case "Persoon":
+            case "Persoonsnaam":
                 nav("/persoon/" + id);
                 break;
             case "Commissie":
@@ -51,8 +51,8 @@ export default function ListItem({item}: { item: IResultItem }) {
 
     return (
         <div className="hcResultListDetail">
-            <div className="resultName" onClick={() => goToPage(item.cat, item.id)}>{item.name} {LiveAndLetDie}</div>
-            <div>{item.cat}{era}{provincie}</div>
+            <div className="resultName" onClick={() => goToPage(item.category, item.id)}>{item.name} {LiveAndLetDie}</div>
+            <div>{item.category}</div>
         </div>
     );
 }

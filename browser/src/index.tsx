@@ -16,7 +16,9 @@ import ListItem from "./components/listItem";
 import Detail from "./components/detail";
 import Persoon from "./components/persoon";
 import EntityLoader from "./misc/entityLoader";
+import PageFooter from "./misc/pageFooter";
 import logo from './assets/img/logo.png';
+import {BASE_URL} from "./misc/config";
 
 // @ts-ignore
 import './index.css';
@@ -26,14 +28,15 @@ import Locatie from "./components/locatie";
 import Organisatie from "./components/organisatie";
 import Hoedanigheid from "./components/hoedanigheid";
 
-const title = 'REPUBLIC Entity Browser';
-const shortTitle = 'REPUBLIC Entity Browser';
-const searchLoader = createSearchLoader(searchUtils.getSearchObjectFromParams, '/browse', 30);
+const title = 'Entiteitenbrowser';
+const shortTitle = 'Entiteitenbrowser';
+const searchLoader = createSearchLoader(searchUtils.getSearchObjectFromParams, BASE_URL + '/browse', 30);
 const detailLoader = createDetailLoader(id => `/detail/${id}`);
 
 const pageHeader = <PageHeader
     title={shortTitle}
-    logo={<img src={logo} className="logo" alt="REPUBLIC Logo"/>}/>;
+    logo={<img src={logo} className="logo" alt="Goetgevonden Logo"/>}/>;
+
 
 const routeObject: RouteObject = {
   path: '/',
@@ -83,8 +86,7 @@ const routeObject: RouteObject = {
   ]
 };
 
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-    <React.StrictMode>
       <RouterProvider router={createBrowserRouter([routeObject])}/>
-    </React.StrictMode>
 );
