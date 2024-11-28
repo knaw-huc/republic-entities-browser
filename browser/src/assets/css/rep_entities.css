@@ -5,6 +5,7 @@ height: 50px !important;
 .hcTitle{
 display: inline-block;
 margin-left: 140px;
+margin-top: -16px;
 }
 
 .resultName{
@@ -51,7 +52,7 @@ margin-top: 40px;
 
 .goBack{
 margin-top: 40px;
-color: #ea9f49;
+color: #a46825;
 cursor: pointer;
 font-size: smaller;
 }
@@ -63,8 +64,10 @@ margin: 40px 0;
 .pageHeader{
 background-color: #2b2b2b !important;
 }
-
-.pageHeader a, .hcClickable {
+.hcClickable {
+color: #a46825;
+}
+.pageHeader a  {
 color: #ea9f49 !important;
 }
 

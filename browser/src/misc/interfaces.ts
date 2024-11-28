@@ -6,14 +6,26 @@ export interface IResultItem {
     name: string,
     category: string,
     labels: Ilabel[],
-    person_data?: IPersonData
 
 }
 
-export interface IPersonData{
-    life_begin: string,
-    life_end: string,
-    province: string
+export interface IPersoon{
+    id: string,
+    name: string,
+    labels: Ilabel[],
+    raa: IPersoonLink[],
+    delegates: IPersoonLink[],
+    envoyes: IGezant[]
+}
+
+export interface IGezant{
+    name: string,
+    link: string
+}
+
+export interface IPersoonLink{
+    name: string,
+    id: string
 }
 
 export interface Ilabel {

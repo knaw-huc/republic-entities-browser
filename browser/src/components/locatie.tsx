@@ -4,7 +4,7 @@ import {ILocatie} from "../misc/interfaces";
 import DetailTable from "../misc/detailTable";
 import LocationMap from "./locationMap"
 import EntityRow from "../misc/entityRow";
-import {goToGoet} from "../misc/functions";
+import {goToGoetLocation} from "../misc/functions";
 import {goToGeoNames} from "../misc/functions";
 
 export default function Locatie() {
@@ -46,7 +46,7 @@ export default function Locatie() {
                     <ul>
                         <li>
                             <div className="hcClickable" onClick={() => {
-                                goToGoet(data.name, "locationName");
+                                goToGoetLocation(data.name, data.id);
                             }}>Goetgevonden
                             </div>
                         </li>
