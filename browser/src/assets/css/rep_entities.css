@@ -1,3 +1,4 @@
+
 .hcBrandLogo .logo {
 height: 50px !important;
 }
@@ -64,9 +65,15 @@ margin: 40px 0;
 .pageHeader{
 background-color: #2b2b2b !important;
 }
-.hcClickable {
+.hcClickable, .listLink {
 color: #a46825;
 }
+
+.listLink{
+cursor: pointer;
+
+}
+
 .pageHeader a  {
 color: #ea9f49 !important;
 }

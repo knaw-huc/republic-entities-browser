@@ -27,6 +27,7 @@ import Commissie from "./components/commissie";
 import Locatie from "./components/locatie";
 import Organisatie from "./components/organisatie";
 import Hoedanigheid from "./components/hoedanigheid";
+import Gedeputeerde from "./components/gedeputeerde";
 
 const title = 'Entiteitenbrowser';
 const shortTitle = 'Entiteitenbrowser';
@@ -82,6 +83,11 @@ const routeObject: RouteObject = {
       path: '/hoedanigheid/:id',
       loader: ({params}) =>  EntityLoader('hoedanigheid', params.id as string),
       element: <Hoedanigheid/>
+    },
+    {
+      path: '/gedeputeerde/:id',
+      loader: ({params}) =>  EntityLoader('gedeputeerde', params.id as string),
+      element: <Gedeputeerde/>
     }
   ]
 };

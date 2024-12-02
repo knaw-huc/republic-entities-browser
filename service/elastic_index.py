@@ -26,7 +26,7 @@ class Index:
             if item["field"] == "FREE_TEXT":
                 for value in item["values"]:
                     must_collection.append({"multi_match": {"query": value, "fields": ["*"]}})
-            elif item["field"] == "activity_hint_begin" or item["field"] == "activity_hint_end":
+            elif item["field"] == "first_year" or item["field"] == "last_year":
                 range_values = item["values"][0]
                 r_array = range_values.split('-')
                 must_collection.append({"range": {item["field"]: {"gte": r_array[0], "lte": r_array[1]}}})

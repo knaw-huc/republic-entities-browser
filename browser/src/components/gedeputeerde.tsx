@@ -1,47 +1,43 @@
 import React from "react";
 import {useLoaderData, useParams, useNavigate} from "react-router-dom";
-import {IOrganisatie} from "../misc/interfaces";
+import {IGedeputeerde} from "../misc/interfaces";
+import DetailTable from "../misc/detailTable";
 import EntityRow from "../misc/entityRow";
 import {goToGoet} from "../misc/functions";
+import {RAA} from "../misc/config";
 
-export default function Organisatie() {
+export default function Gedeputeerde() {
     const {id} = useParams();
-    const data = useLoaderData() as IOrganisatie;
+    const data = useLoaderData() as IGedeputeerde;
     const navigate = useNavigate();
-    let list: string[] = [];
-    if (data.labels !== undefined) {
-        data.labels.map((item) => {list.push(item.label)});
-    }
+    const hasRAA = data.RAA_nr !== "0";
 
 
     return (
         <div className="hcContentContainer">
             <div className="hcBasicSideMargin">
-                <h1>Organisatie</h1>
+                <h1>Gedeputeerde</h1>
                 <div className="entityTable">
                     <EntityRow label="ID" value={data.id}/>
                     <EntityRow label="Entiteit" value={data.name}/>
-                    <EntityRow label="Beginjaar" value={data.first_year}/>
-                    <EntityRow label="Eindjaar" value={data.last_year}/>
-                    <EntityRow label="Categorieën" value={list.join(', ')}/>
+                    <EntityRow label="Leefjaren" value={data.leefjaren}/>
+                    <EntityRow label="Provincie" value={data.provincie}/>
                 </div>
                 <div className="entityInstances">
                     <h2>Waar komt deze entiteit voor?</h2>
                     <ul>
                         <li>
                             <div className="hcClickable" onClick={() => {
-                                goToGoet(data.name, "organisationName");
+                                goToGoet(data.id, "delegateId");
                             }}>Goetgevonden
                             </div>
                         </li>
-                        {data.links.map((item, index) => {
-                            return (<li key={index}>
-                                <div className="hcClickable" onClick={() => {
-                                    navigate("/locatie/" + item.target);
-                                }}>Entiteitenbrowser: {item.description}
-                                </div>
-                            </li>)
-                        })}
+                        {hasRAA && <li>
+                            <div className="hcClickable" onClick={() => {
+                                window.open(RAA + data.RAA_nr);
+                            }}>Repertorium van Ambtenaren en Ambtsdragers
+                            </div>
+                        </li>}
                     </ul>
                 </div>
                 <div className="goBack" onClick={() => navigate(-1)}>Terug naar vorige pagina</div>

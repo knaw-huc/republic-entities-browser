@@ -39,7 +39,7 @@ export default function Facets({registerFacet, unregisterFacet, setFacet, search
             unregisterFacet={unregisterFacet}
             setFacet={setFacet}
             name="Beginjaar"
-            field="activity_hint_begin"
+            field="first_year"
             min={1580}
             max={1800}/>
         <SliderFacet
@@ -47,7 +47,7 @@ export default function Facets({registerFacet, unregisterFacet, setFacet, search
             unregisterFacet={unregisterFacet}
             setFacet={setFacet}
             name="Eindjaar"
-            field="activity_hint_end"
+            field="last_year"
             min={1580}
             max={1800}/>
     </>;

@@ -19,6 +19,8 @@ export default function Hoedanigheid() {
                 <div className="entityTable>">
                     <EntityRow label="ID" value={data.id}/>
                     <EntityRow label="Entiteit" value={data.name}/>
+                    <EntityRow label="Beginjaar" value={data.first_year}/>
+                    <EntityRow label="Eindjaar" value={data.last_year}/>
                     <EntityRow label="Categorieën" value={list.join(', ')}/>
                 </div>
                 <div className="entityInstances">

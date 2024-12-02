@@ -15,7 +15,9 @@ export interface IPersoon{
     labels: Ilabel[],
     raa: IPersoonLink[],
     delegates: IPersoonLink[],
-    envoyes: IGezant[]
+    envoyes: IGezant[],
+    first_year: string,
+    last_year: string
 }
 
 export interface IGezant{
@@ -35,20 +37,26 @@ export interface Ilabel {
 export interface IHoedanigheid {
     id: string,
     name: string,
-    labels: Ilabel[]
+    labels: Ilabel[],
+    first_year: string,
+    last_year: string
 }
 
 export interface ICommissie {
     id: string,
     name: string,
-    labels: Ilabel[]
+    labels: Ilabel[],
+    first_year: string,
+    last_year: string
 }
 
 export interface IOrganisatie {
     id: string,
     name: string,
     labels: Ilabel[],
-    links: IOrgLink[]
+    links: IOrgLink[],
+    first_year: string,
+    last_year: string
 }
 
 export interface IOrgLink {
@@ -56,6 +64,15 @@ export interface IOrgLink {
     target: string,
     target_category: string,
     description: string
+}
+
+export interface IGedeputeerde {
+    id: string,
+    name: string,
+    provincie: string,
+    RAA_nr: string,
+    leefjaren: string,
+    delegate_name: string
 }
 
 export interface ILocatie {
@@ -70,7 +87,9 @@ export interface ILocatie {
         lat?: number,
         lon?: number
     }
-    links?: IGeoLink[]
+    links?: IGeoLink[],
+    first_year: string,
+    last_year: string
 }
 
 export interface IGeoLink {

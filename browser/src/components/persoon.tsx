@@ -3,6 +3,7 @@ import {useLoaderData, useParams, useNavigate} from "react-router-dom";
 import {IPersoon} from "../misc/interfaces";
 import EntityRow from "../misc/entityRow";
 import {goToGoet} from "../misc/functions";
+import {RAA} from "../misc/config";
 
 
 export default function Persoon() {
@@ -22,6 +23,8 @@ export default function Persoon() {
                 <h1>Persoonsnaam</h1>
                 <EntityRow label="ID" value={data.id}/>
                 <EntityRow label="Entiteit" value={data.name}/>
+                <EntityRow label="Beginjaar" value={data.first_year}/>
+                <EntityRow label="Eindjaar" value={data.last_year}/>
                 <EntityRow label="Categorieën" value={list.join(', ')}/>
                 <div className="entityInstances">
                     <h2>Waar komt deze entiteit voor?</h2>
@@ -33,13 +36,17 @@ export default function Persoon() {
                             </div>
                         </li>
                         {hasDelegates && <li>
-                            <>Gedelegeerden
+                            <>Gedeputeerden
                                 <ul>
                             {data.delegates.map((item, index) => {
                                 return (
-                                    <li key={index} onClick={() => {
-                                        goToGoet(item.id, 'delegateId');
-                                    }}>{item.name}</li>
+                                    <li>{item.name}
+                                        <div className="listLink" onClick={() => {
+                                            goToGoet(item.id,  'delegateId');
+                                        }}>Goetgevonden</div>
+                                        <div className="listLink" onClick={() => {
+                                            navigate("/gedeputeerde/" + item.id);
+                                        }}>Entiteitenbrowser</div></li>
                                 )
                             })}</ul></>
                         </li>}
@@ -49,8 +56,8 @@ export default function Persoon() {
                                     <ul>
                                         {data.raa.map((item, index) => {
                                             return (
-                                                <li key={index} onClick={() => {
-                                                    alert("Ga naar RAA");
+                                                <li className="listLink" key={index} onClick={() => {
+                                                    window.open(RAA + item.id)
                                                 }}>{item.name}</li>
                                             )
                                         })}</ul></>
@@ -58,6 +65,16 @@ export default function Persoon() {
                         </li>}
                         {hasEnvoys && <li>
                             Repertoria van diplomatieke vertegenwoordigers
+                            <>
+                                <ul>
+                                    {data.envoyes.map((item, index) => {
+                                        return (
+                                            <li className="listLink" key={index} onClick={() => {
+                                                window.open(item.link)
+                                            }}>{item.name}</li>
+                                        )
+                                    })}</ul>
+                            </>
                         </li>}
                     </ul>
                 </div>

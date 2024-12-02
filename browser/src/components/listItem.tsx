@@ -46,12 +46,15 @@ export default function ListItem({item}: { item: IResultItem }) {
             case "Hoedanigheid":
                 nav("/hoedanigheid/" + id);
                 break;
+            case "Gedeputeerde":
+                nav("/gedeputeerde/" + id);
+                break;
         }
     }
 
     return (
         <div className="hcResultListDetail">
-            <div className="resultName" onClick={() => goToPage(item.category, item.id)}>{item.name} {LiveAndLetDie}</div>
+            <div className="resultName" onClick={() => goToPage(item.category, item.id)}>{item.name}</div>
             <div>{item.category}</div>
         </div>
     );

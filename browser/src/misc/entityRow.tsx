@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function EntityRow({label, value}: {label: string, value: string | undefined}) {
-    const hasValue = value !== undefined && value.trim() !== "";
+    const hasValue = value !== undefined && value !== "";
     return (
         <>
             { hasValue && <div className="entityRow">

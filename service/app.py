@@ -124,6 +124,14 @@ def commissie(id):
     else:
         return app.send_static_file("index.html")
 
+@app.route("/gedeputeerde/<id>", methods=['GET'])
+def gedeputeerde(id):
+    if request.accept_mimetypes.accept_json:
+        ret_struc = index.get_entity('Gedeputeerde', id)
+        return json.dumps(ret_struc["items"][0])
+    else:
+        return app.send_static_file("index.html")
+
 
 
 #Start main program

@@ -37,6 +37,8 @@ export default function Locatie() {
                     <EntityRow label="Regio" value={data.geo_data?.region}/>
                     <EntityRow label="Huidig land" value={data.geo_data?.modern_country}/>
                     <EntityRow label="Huidige provincie" value={data.geo_data?.modern_province}/>
+                    <EntityRow label="Beginjaar" value={data.first_year}/>
+                    <EntityRow label="Eindjaar" value={data.last_year}/>
                     <EntityRow label="Categorieën" value={list.join(', ')}/>
                     <EntityRow label="Coördinaten" value={data.geo_data?.coordinates}/>
                 </div>
