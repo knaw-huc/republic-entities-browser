@@ -8,8 +8,8 @@ import math
 class Index:
     def __init__(self, config):
         self.config = config
-        #self.client = Elasticsearch([{"host": self.config["url"]}])
-        self.client = Elasticsearch()
+        self.client = Elasticsearch([{"host": self.config["url"]}])
+        #self.client = Elasticsearch()
 
     def no_case(self, str_in):
         str = str_in.strip()
@@ -129,5 +129,9 @@ class Index:
                 }
             }
         })
-        return {"items": [item["_source"] for item in response["hits"]["hits"]]}
+        res = [item["_source"] for item in response["hits"]["hits"]]
+        if len(res) > 0:
+            return {"items": res}
+        else:
+            return {"items": [{"id": "0"}]}
 

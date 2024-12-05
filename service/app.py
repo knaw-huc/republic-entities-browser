@@ -33,6 +33,7 @@ def catch_some():
 @app.route("/hoedanigheid/<id>.html")
 @app.route("/commissie/<id>.html")
 @app.route("/organisatie/<id>.html")
+@app.route("/gedeputeerde/<id>.html")
 def get_entity(id):
     return app.send_static_file("index.html")
 
@@ -61,6 +62,11 @@ def hoedanigheid_json(id):
     ret_struc = index.get_entity('Hoedanigheid', id)
     return jsonify(ret_struc["items"][0])
 
+@app.route("/gedeputeerde/<id>.json")
+def gedeputeerde_json(id):
+    ret_struc = index.get_entity('Gedeputeerde', id)
+    return jsonify(ret_struc["items"][0])
+
 @app.route("/facet", methods=['GET','POST'])
 def get_facet():
     struc = request.get_json()
@@ -86,51 +92,51 @@ def dummy(id):
 
 @app.route("/organisatie/<id>", methods=['GET'])
 def organisatie(id):
-    if request.accept_mimetypes.accept_json:
-        ret_struc = index.get_entity('Organisatie', id)
-        return jsonify(ret_struc["items"][0])
-    else:
-        return app.send_static_file("index.html")
+    #if request.accept_mimetypes.accept_json:
+    #    ret_struc = index.get_entity('Organisatie', id)
+    #    return jsonify(ret_struc["items"][0])
+    #else:
+    return app.send_static_file("index.html")
 
 @app.route("/locatie/<id>", methods=['GET'])
 def locatie(id):
-    if request.accept_mimetypes.accept_json:
-        ret_struc = index.get_entity('Locatie', id)
-        return jsonify(ret_struc["items"][0])
-    else:
-        return app.send_static_file("index.html")
+    #if request.accept_mimetypes.accept_json:
+    #    ret_struc = index.get_entity('Locatie', id)
+    #    return jsonify(ret_struc["items"][0])
+    #else:
+    return app.send_static_file("index.html")
 
 @app.route("/persoon/<id>", methods=['GET'])
 def persoon(id):
-    if request.accept_mimetypes.accept_json:
-        ret_struc = index.get_entity('Persoon', id)
-        return jsonify(ret_struc["items"][0])
-    else:
-        return app.send_static_file("index.html")
+    #if request.accept_mimetypes.accept_json:
+    #    ret_struc = index.get_entity('Persoon', id)
+    #    return jsonify(ret_struc["items"][0])
+    #else:
+    return app.send_static_file("index.html")
 
 @app.route("/hoedanigheid/<id>", methods=['GET'])
 def hoedanigheid(id):
-    if request.accept_mimetypes.accept_json:
-        ret_struc = index.get_entity('Hoedanigheid', id)
-        return jsonify(ret_struc["items"][0])
-    else:
-        return app.send_static_file("index.html")
+    #if request.accept_mimetypes.accept_json:
+    #    ret_struc = index.get_entity('Hoedanigheid', id)
+    #    return jsonify(ret_struc["items"][0])
+    #else:
+    return app.send_static_file("index.html")
 
 @app.route("/commissie/<id>", methods=['GET'])
 def commissie(id):
-    if request.accept_mimetypes.accept_json:
-        ret_struc = index.get_entity('Commissie', id)
-        return json.dumps(ret_struc["items"][0])
-    else:
-        return app.send_static_file("index.html")
+    #if request.accept_mimetypes.accept_json:
+    #    ret_struc = index.get_entity('Commissie', id)
+    #    return json.dumps(ret_struc["items"][0])
+    #else:
+    return app.send_static_file("index.html")
 
 @app.route("/gedeputeerde/<id>", methods=['GET'])
 def gedeputeerde(id):
-    if request.accept_mimetypes.accept_json:
-        ret_struc = index.get_entity('Gedeputeerde', id)
-        return json.dumps(ret_struc["items"][0])
-    else:
-        return app.send_static_file("index.html")
+    #if request.accept_mimetypes.accept_json:
+    #    ret_struc = index.get_entity('Gedeputeerde', id)
+    #    return json.dumps(ret_struc["items"][0])
+    #else:
+    return app.send_static_file("index.html")
 
 
 

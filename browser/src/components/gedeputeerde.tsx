@@ -10,13 +10,15 @@ export default function Gedeputeerde() {
     const {id} = useParams();
     const data = useLoaderData() as IGedeputeerde;
     const navigate = useNavigate();
-    const hasRAA = data.RAA_nr !== "0";
+    const hasRAA = data.RAA_nr !== 0;
+    const isItem = data.id !== "0";
 
 
     return (
         <div className="hcContentContainer">
             <div className="hcBasicSideMargin">
                 <h1>Gedeputeerde</h1>
+                {isItem ? (<>
                 <div className="entityTable">
                     <EntityRow label="ID" value={data.id}/>
                     <EntityRow label="Entiteit" value={data.name}/>
@@ -39,7 +41,9 @@ export default function Gedeputeerde() {
                             </div>
                         </li>}
                     </ul>
-                </div>
+                </div></>) : (
+                    <div>De entiteit die u zocht is (nog) niet in de entiteitenbrowser opgenomen.</div>
+                )}
                 <div className="goBack" onClick={() => navigate(-1)}>Terug naar vorige pagina</div>
             </div>
         </div>

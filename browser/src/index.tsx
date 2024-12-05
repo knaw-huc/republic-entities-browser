@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client';
 import {createBrowserRouter, RouteObject, RouterProvider} from 'react-router-dom';
 import {
   App,
-  PageHeader,
   Search,
   Detail as BrowserDetail,
   createSearchLoader,
@@ -17,7 +16,7 @@ import Detail from "./components/detail";
 import Persoon from "./components/persoon";
 import EntityLoader from "./misc/entityLoader";
 import PageFooter from "./misc/pageFooter";
-import logo from './assets/img/logo.png';
+import PageHeader from "./misc/pageHeader";
 import {BASE_URL} from "./misc/config";
 
 // @ts-ignore
@@ -32,11 +31,9 @@ import Gedeputeerde from "./components/gedeputeerde";
 const title = 'Entiteitenbrowser';
 const shortTitle = 'Entiteitenbrowser';
 const searchLoader = createSearchLoader(searchUtils.getSearchObjectFromParams, BASE_URL + '/browse', 30);
-const detailLoader = createDetailLoader(id => `/detail/${id}`);
+const detailLoader = createDetailLoader(id => BASE_URL + `/detail/${id}`);
 
-const pageHeader = <PageHeader
-    title={shortTitle}
-    logo={<img src={logo} className="logo" alt="Goetgevonden Logo"/>}/>;
+const pageHeader = <PageHeader/>;
 
 
 const routeObject: RouteObject = {

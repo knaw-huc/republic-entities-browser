@@ -70,7 +70,7 @@ export interface IGedeputeerde {
     id: string,
     name: string,
     provincie: string,
-    RAA_nr: string,
+    RAA_nr: number,
     leefjaren: string,
     delegate_name: string
 }

@@ -13,7 +13,7 @@ WORKDIR /app
 COPY ./service/app.py /app
 COPY ./service/elastic_index.py /app
 COPY ./service/requirements.txt /app
-COPY --from=frontend-build /app/build /app/browser
+ADD ./browser/build /app/browser
 
 RUN pip3 install --trusted-host pypi.python.org -r /app/requirements.txt &&\
     pip3 install --trusted-host pypi.python.org gunicorn

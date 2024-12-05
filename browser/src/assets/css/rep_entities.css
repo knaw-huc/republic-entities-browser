@@ -5,8 +5,9 @@ height: 50px !important;
 
 .hcTitle{
 display: inline-block;
-margin-left: 140px;
-margin-top: -16px;
+margin-left: -350px;
+margin-top: 24px;
+color: #ea9f49;
 }
 
 .resultName{
@@ -17,6 +18,15 @@ cursor: pointer;
 .resItemSeparator{
 border: 1px solid #dddddd;
 }
+
+.hcPageHeaderSimple .navi {
+display: flex;
+flex-direction: row;
+align-items: baseline;
+line-height: 130%;
+margin-top: 34px;
+}
+
 
 .hcResultListDetail{
 margin-top: 10px;
@@ -66,7 +76,7 @@ margin: 40px 0;
 background-color: #2b2b2b !important;
 }
 .hcClickable, .listLink {
-color: #a46825;
+color: #a46825 !important;
 }
 
 .listLink{
@@ -76,6 +86,12 @@ cursor: pointer;
 
 .pageHeader a  {
 color: #ea9f49 !important;
+}
+
+.navi a{
+padding-right: 10px;
+color: #eee5db !important;
+font-weight: bold;
 }
 
 .footerArea{

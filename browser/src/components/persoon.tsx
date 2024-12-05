@@ -13,6 +13,7 @@ export default function Persoon() {
     const hasRAA = data.raa !== undefined && data.raa.length > 0;
     const hasDelegates = data.delegates !== undefined && data.delegates.length > 0;
     const hasEnvoys = data.envoyes !== undefined && data.envoyes.length > 0;
+    const isItem = data.id !== "0";
     let list: string[] = [];
     if (data.labels !== undefined) {
         data.labels.map((item) => {list.push(item.label)});
@@ -21,11 +22,12 @@ export default function Persoon() {
         <div className="hcContentContainer">
             <div className="hcBasicSideMargin">
                 <h1>Persoonsnaam</h1>
+                {isItem ? (<>
                 <EntityRow label="ID" value={data.id}/>
                 <EntityRow label="Entiteit" value={data.name}/>
                 <EntityRow label="Beginjaar" value={data.first_year}/>
                 <EntityRow label="Eindjaar" value={data.last_year}/>
-                <EntityRow label="Categorieën" value={list.join(', ')}/>
+                <EntityRow label="Categorieën" value={list.join('; ')}/>
                 <div className="entityInstances">
                     <h2>Waar komt deze entiteit voor?</h2>
                     <ul>
@@ -77,7 +79,9 @@ export default function Persoon() {
                             </>
                         </li>}
                     </ul>
-                </div>
+                </div></>) : (
+                    <div>De entiteit die u zocht is (nog) niet in de entiteitenbrowser opgenomen.</div>
+                )}
                 <div className="goBack" onClick={() => navigate(-1)}>Terug naar vorige pagina</div>
             </div>
         </div>

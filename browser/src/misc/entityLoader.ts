@@ -2,7 +2,7 @@ import {BASE_URL} from "./config";
 import {IResultItem} from "./interfaces";
 
 export default async function EntityLoader(entity: string, id: string) {
-    const result = await fetch(BASE_URL + entity + '/' + id, {
+    const result = await fetch('/' + entity + '/' + id + ".json", {
         method: 'GET',
         headers: {
             'Accept': 'application/json'

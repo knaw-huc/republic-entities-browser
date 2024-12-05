@@ -15,6 +15,7 @@ export default function Locatie() {
     let hasMap = false;
     let lat = 0;
     let lon = 0;
+    const isItem = data.id !== "0";
     if (data.geo_data !== undefined && data.geo_data.lat !== undefined && data.geo_data.lon !== undefined) {
         hasMap = true;
         lat = data.geo_data.lat;
@@ -30,7 +31,7 @@ export default function Locatie() {
         <div className="hcContentContainer">
             <div className="hcBasicSideMargin">
                 <h1>Locatie</h1>
-                {/*<DetailTable data={data}/>*/}
+                {isItem ? (<>
                 <div className="entityTable">
                     <EntityRow label="ID" value={data.id}/>
                     <EntityRow label="Entiteit" value={data.name}/>
@@ -39,7 +40,7 @@ export default function Locatie() {
                     <EntityRow label="Huidige provincie" value={data.geo_data?.modern_province}/>
                     <EntityRow label="Beginjaar" value={data.first_year}/>
                     <EntityRow label="Eindjaar" value={data.last_year}/>
-                    <EntityRow label="Categorieën" value={list.join(', ')}/>
+                    <EntityRow label="Categorieën" value={list.join('; ')}/>
                     <EntityRow label="Coördinaten" value={data.geo_data?.coordinates}/>
                 </div>
                 {hasMap && <LocationMap lat={lat} lon={lon}/>}
@@ -60,7 +61,9 @@ export default function Locatie() {
                             </div>
                         </li>}
                     </ul>
-                </div>
+                </div></>) : (
+                    <div>De entiteit die u zocht is (nog) niet in de entiteitenbrowser opgenomen.</div>
+                )}
                 <div className="goBack" onClick={() => navigate(-1)}>Terug naar vorige pagina</div>
             </div>
         </div>

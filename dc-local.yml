@@ -16,9 +16,7 @@ services:
 
 
   app:
-    build:
-      context: ./
-      dockerfile: Dockerfile
+    image: robzeeman
     ports:
       - 80:5000
     environment:
