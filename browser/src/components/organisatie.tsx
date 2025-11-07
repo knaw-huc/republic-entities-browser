@@ -32,7 +32,7 @@ export default function Organisatie() {
                     <ul>
                         <li>
                             <div className="hcClickable" onClick={() => {
-                                goToGoet(data.name, "organisationName");
+                                goToGoet(data.id, "organisationId");
                             }}>Goetgevonden
                             </div>
                         </li>

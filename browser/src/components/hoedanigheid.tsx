@@ -32,7 +32,7 @@ export default function Hoedanigheid() {
                     <ul>
                         <li>
                             <div className="hcClickable" onClick={() => {
-                                goToGoet(data.name, 'roleName');
+                                goToGoet(data.id, 'roleId');
                             }}>Goetgevonden
                             </div>
                         </li>

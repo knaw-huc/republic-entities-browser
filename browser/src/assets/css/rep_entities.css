@@ -5,9 +5,10 @@ height: 50px !important;
 
 .hcTitle{
 display: inline-block;
-margin-left: -350px;
+margin-left: -324px;
 margin-top: 24px;
 color: #ea9f49;
+cursor: pointer;
 }
 
 .resultName{
@@ -75,13 +76,20 @@ margin: 40px 0;
 .pageHeader{
 background-color: #2b2b2b !important;
 }
+
+
 .hcClickable, .listLink {
 color: #a46825 !important;
 }
 
 .listLink{
 cursor: pointer;
+}
 
+.filler{
+display: block;
+height: 50px;
+margin: 0;
 }
 
 .pageHeader a  {

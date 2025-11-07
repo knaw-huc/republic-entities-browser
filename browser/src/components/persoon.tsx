@@ -33,7 +33,7 @@ export default function Persoon() {
                     <ul>
                         <li>
                             <div className="hcClickable" onClick={() => {
-                                goToGoet(data.name, 'personName');
+                                goToGoet(data.id, 'personId');
                             }}>Goetgevonden
                             </div>
                         </li>
